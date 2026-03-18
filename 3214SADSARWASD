@@ -567,10 +567,14 @@ function Orion:Window(GuiConfig)
 	end)
 
 	-- active indicator bar
+	-- TabScroll y=6, paddingTop=4, tabH=30 → center of tab[0] = 6+4+15=25, indicator h=16 → y=25-8=17
+	local IND_BASE = 17
+	local IND_STEP = 31  -- tabH(30) + gap(1)
+
 	local Indicator = Instance.new("Frame", Sidebar)
 	Indicator.Name = "Indicator"
 	Indicator.Size = UDim2.new(0,3,0,16)
-	Indicator.Position = UDim2.new(0,0,0,15)
+	Indicator.Position = UDim2.new(0,0,0,IND_BASE)
 	Indicator.BackgroundColor3 = Accent
 	Indicator.BorderSizePixel = 0
 	Indicator.ZIndex = 5
@@ -966,7 +970,7 @@ function Orion:Window(GuiConfig)
 				end
 			end
 			-- indicator slide
-			local targetY = 7 + idx*31
+			local targetY = IND_BASE + idx*IND_STEP
 			tw(Indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
 				{ Position = UDim2.new(0,0,0,targetY) })
 			switchPage(idx)
