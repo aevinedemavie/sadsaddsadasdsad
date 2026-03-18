@@ -586,64 +586,52 @@ function Orion:Window(GuiConfig)
 	MakeResizable(Main, MinW, MinH, MaxW, MaxH)
 
 	local CloseBtn = Instance.new("TextButton")
-	CloseBtn.Text = "✕"
-	CloseBtn.Font = Enum.Font.GothamBold
+	CloseBtn.Text = "X"
+	CloseBtn.Font = Enum.Font.Gotham
 	CloseBtn.TextSize = 12
 	CloseBtn.Size = UDim2.new(0, 28, 0, 28)
 	CloseBtn.AnchorPoint = Vector2.new(1, 0.5)
 	CloseBtn.Position = UDim2.new(1, -8, 0.5, 0)
-	CloseBtn.TextColor3 = Color3.fromRGB(255, 80, 100)
-	CloseBtn.BackgroundColor3 = Color3.fromRGB(255, 60, 80)
-	CloseBtn.BackgroundTransparency = 0.85
+	CloseBtn.TextColor3 = Color3.fromRGB(180, 80, 90)
+	CloseBtn.BackgroundTransparency = 1
 	CloseBtn.BorderSizePixel = 0
 	CloseBtn.AutoButtonColor = false
 	CloseBtn.ZIndex = 12
 	CloseBtn.Parent = TopBar
-	local closeBtnCorner = Instance.new("UICorner", CloseBtn)
-	closeBtnCorner.CornerRadius = UDim.new(0, 7)
-	addGlowStroke(CloseBtn, Color3.fromRGB(255, 60, 80), 1, 0.7)
 
 	CloseBtn.MouseEnter:Connect(function()
 		TweenService:Create(CloseBtn, TWEEN_FAST, {
-			TextColor3 = Color3.fromRGB(255, 120, 130),
-			BackgroundTransparency = 0.6,
+			TextColor3 = Color3.fromRGB(255, 90, 100),
 		}):Play()
 	end)
 	CloseBtn.MouseLeave:Connect(function()
 		TweenService:Create(CloseBtn, TWEEN_FAST, {
-			TextColor3 = Color3.fromRGB(255, 80, 100),
-			BackgroundTransparency = 0.85,
+			TextColor3 = Color3.fromRGB(180, 80, 90),
 		}):Play()
 	end)
 
 	local MinBtn = Instance.new("TextButton")
-	MinBtn.Text = "─"
-	MinBtn.Font = Enum.Font.GothamBold
-	MinBtn.TextSize = 13
+	MinBtn.Text = "-"
+	MinBtn.Font = Enum.Font.Gotham
+	MinBtn.TextSize = 16
 	MinBtn.Size = UDim2.new(0, 28, 0, 28)
 	MinBtn.AnchorPoint = Vector2.new(1, 0.5)
 	MinBtn.Position = UDim2.new(1, -44, 0.5, 0)
-	MinBtn.TextColor3 = Color3.fromRGB(255, 210, 60)
-	MinBtn.BackgroundColor3 = Color3.fromRGB(255, 200, 40)
-	MinBtn.BackgroundTransparency = 0.85
+	MinBtn.TextColor3 = Color3.fromRGB(120, 130, 160)
+	MinBtn.BackgroundTransparency = 1
 	MinBtn.BorderSizePixel = 0
 	MinBtn.AutoButtonColor = false
 	MinBtn.ZIndex = 12
 	MinBtn.Parent = TopBar
-	local minBtnCorner = Instance.new("UICorner", MinBtn)
-	minBtnCorner.CornerRadius = UDim.new(0, 7)
-	addGlowStroke(MinBtn, Color3.fromRGB(255, 210, 40), 1, 0.7)
 
 	MinBtn.MouseEnter:Connect(function()
 		TweenService:Create(MinBtn, TWEEN_FAST, {
-			TextColor3 = Color3.fromRGB(255, 235, 100),
-			BackgroundTransparency = 0.65,
+			TextColor3 = Color3.fromRGB(200, 210, 240),
 		}):Play()
 	end)
 	MinBtn.MouseLeave:Connect(function()
 		TweenService:Create(MinBtn, TWEEN_FAST, {
-			TextColor3 = Color3.fromRGB(255, 210, 60),
-			BackgroundTransparency = 0.85,
+			TextColor3 = Color3.fromRGB(120, 130, 160),
 		}):Play()
 	end)
 
@@ -1213,7 +1201,7 @@ function Orion:Window(GuiConfig)
 		TabBtn.Name = "Tab_" .. tabIdx
 		TabBtn.LayoutOrder = tabIdx
 		TabBtn.Size = UDim2.new(1, 0, 0, 32)
-		TabBtn.BackgroundColor3 = Accent
+		TabBtn.BackgroundColor3 = COL.card
 		TabBtn.BackgroundTransparency = 1
 		TabBtn.Text = ""
 		TabBtn.AutoButtonColor = false
@@ -1437,7 +1425,7 @@ function Orion:Window(GuiConfig)
 				fr.Parent = ItemHolder
 				local frCorner = Instance.new("UICorner", fr)
 				frCorner.CornerRadius = UDim.new(0, 9)
-				addGlowStroke(fr, COL.border, 1, 0.55)
+				-- no card stroke
 
 				local btn = Instance.new("TextButton")
 				btn.Text = ""
@@ -1473,7 +1461,7 @@ function Orion:Window(GuiConfig)
 				sb.Parent = fr
 				local sbCorner = Instance.new("UICorner", sb)
 				sbCorner.CornerRadius = UDim.new(1, 0)
-				addGlowStroke(sb, COL.border, 1, 0.6)
+				-- no switch stroke
 
 				local sc = Instance.new("Frame")
 				sc.Size = UDim2.new(0, 13, 0, 13)
@@ -1533,7 +1521,7 @@ function Orion:Window(GuiConfig)
 				fr.Parent = ItemHolder
 				local frCorner = Instance.new("UICorner", fr)
 				frCorner.CornerRadius = UDim.new(0, 9)
-				addGlowStroke(fr, COL.border, 1, 0.55)
+				-- no card stroke
 
 				local dbtn = Instance.new("TextButton")
 				dbtn.Text = ""
@@ -1657,7 +1645,7 @@ function Orion:Window(GuiConfig)
 				fr.Parent = ItemHolder
 				local frCorner = Instance.new("UICorner", fr)
 				frCorner.CornerRadius = UDim.new(0, 9)
-				addGlowStroke(fr, COL.border, 1, 0.55)
+				-- no card stroke
 
 				local itl = Instance.new("TextLabel")
 				itl.Font = Enum.Font.GothamBold
@@ -1730,7 +1718,7 @@ function Orion:Window(GuiConfig)
 				fr.Parent = ItemHolder
 				local frCorner = Instance.new("UICorner", fr)
 				frCorner.CornerRadius = UDim.new(0, 9)
-				addGlowStroke(fr, COL.border, 1, 0.65)
+				-- no card stroke
 
 				local accentLine = Instance.new("Frame")
 				accentLine.Size = UDim2.new(0, 2, 0.65, 0)
@@ -1876,7 +1864,7 @@ function Orion:Window(GuiConfig)
 				fr.Parent = ItemHolder
 				local frCorner = Instance.new("UICorner", fr)
 				frCorner.CornerRadius = UDim.new(0, 9)
-				addGlowStroke(fr, COL.border, 1, 0.55)
+				-- no card stroke
 
 				local function makeBtn(txt, posX, sizeX)
 					local b = Instance.new("TextButton")
@@ -1950,7 +1938,7 @@ function Orion:Window(GuiConfig)
 				fr.Parent = ItemHolder
 				local frCorner = Instance.new("UICorner", fr)
 				frCorner.CornerRadius = UDim.new(0, 9)
-				addGlowStroke(fr, COL.border, 1, 0.55)
+				-- no card stroke
 
 				local stl = Instance.new("TextLabel")
 				stl.Font = Enum.Font.GothamBold
