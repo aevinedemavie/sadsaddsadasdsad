@@ -4,7 +4,7 @@ local TweenService     = game:GetService("TweenService")
 local CoreGui          = game:GetService("CoreGui")
 local LocalPlayer      = game:GetService("Players").LocalPlayer
 
-if not isfolder("Noir") then makefolder("Noir") end
+if not isfolder("Orion") then makefolder("Orion") end
 
 local gameFolder, AutoloadFile
 ConfigData        = {}
@@ -200,9 +200,9 @@ local function Notify(msg, dur, col)
 	dur = dur or 3
 	col = col or Color3.fromRGB(140, 140, 150)
 	task.spawn(function()
-		if not CoreGui:FindFirstChild("NoirNotify") then
+		if not CoreGui:FindFirstChild("OrionNotify") then
 			local g = Instance.new("ScreenGui")
-			g.Name = "NoirNotify"
+			g.Name = "OrionNotify"
 			g.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 			g.Parent = CoreGui
 			local h = Instance.new("Frame", g)
@@ -215,7 +215,7 @@ local function Notify(msg, dur, col)
 			l.VerticalAlignment = Enum.VerticalAlignment.Bottom
 		end
 
-		local H = CoreGui.NoirNotify.Holder
+		local H = CoreGui.OrionNotify.Holder
 		local nf = Instance.new("Frame", H)
 		nf.Size = UDim2.new(1,0,0,52)
 		nf.BackgroundColor3 = C.notif
@@ -233,7 +233,7 @@ local function Notify(msg, dur, col)
 
 		local lbl1 = Instance.new("TextLabel", nf)
 		lbl1.Font = Enum.Font.GothamBold
-		lbl1.Text = "Noir"
+		lbl1.Text = "ORION"
 		lbl1.TextSize = 9
 		lbl1.TextColor3 = col
 		lbl1.TextXAlignment = Enum.TextXAlignment.Left
@@ -273,16 +273,16 @@ local function Notify(msg, dur, col)
 end
 
 -- ═════════════════════════════════════════════════════════════════════════════
-local Noir = {}
+local Orion = {}
 
-function Noir:MakeNotify(cfg)
+function Orion:MakeNotify(cfg)
 	cfg = cfg or {}
 	Notify(cfg.Content or cfg.Description or "", cfg.Delay or 3, cfg.Color)
 end
 
-function Noir:Window(GuiConfig)
+function Orion:Window(GuiConfig)
 	GuiConfig = GuiConfig or {}
-	local Title   = GuiConfig.Title       or "Noir"
+	local Title   = GuiConfig.Title       or "Orion"
 	local Footer  = GuiConfig.Footer      or ""
 	local Accent  = GuiConfig.Color       or Color3.fromRGB(255, 255, 255)
 	local TabW    = GuiConfig["Tab Width"] or 145
@@ -290,7 +290,7 @@ function Noir:Window(GuiConfig)
 	local mobile  = isMobile()
 
 	local folderName = GuiConfig.Folder or Title:gsub("[^%w_ ]",""):gsub("%s+","_")
-	gameFolder   = "Noir/"..folderName
+	gameFolder   = "Orion/"..folderName
 	AutoloadFile = gameFolder.."/autoload.txt"
 	if not isfolder(gameFolder) then makefolder(gameFolder) end
 	CURRENT_VERSION = Version
@@ -300,15 +300,15 @@ function Noir:Window(GuiConfig)
 	end
 
 	-- destroy old
-	if CoreGui:FindFirstChild("NoirUI")     then CoreGui.NoirUI:Destroy()     end
-	if CoreGui:FindFirstChild("NoirToggle") then CoreGui.NoirToggle:Destroy() end
+	if CoreGui:FindFirstChild("OrionUI")     then CoreGui.OrionUI:Destroy()     end
+	if CoreGui:FindFirstChild("OrionToggle") then CoreGui.OrionToggle:Destroy() end
 
 	local DW = mobile and 450 or 570
 	local DH = mobile and 300 or 390
 
 	-- ── ScreenGui ─────────────────────────────────────────────────────────────
 	local Screen = Instance.new("ScreenGui")
-	Screen.Name = "NoirUI"
+	Screen.Name = "OrionUI"
 	Screen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	Screen.ResetOnSpawn = false
 	Screen.Parent = CoreGui
@@ -524,7 +524,7 @@ function Noir:Window(GuiConfig)
 		tw(Main, T_SMOOTH, { Size = UDim2.new(0,0,0,0), BackgroundTransparency=1 })
 		task.delay(0.25, function()
 			Screen:Destroy()
-			if CoreGui:FindFirstChild("NoirToggle") then CoreGui.NoirToggle:Destroy() end
+			if CoreGui:FindFirstChild("OrionToggle") then CoreGui.OrionToggle:Destroy() end
 		end)
 	end)
 
@@ -803,7 +803,7 @@ function Noir:Window(GuiConfig)
 
 	-- ── Toggle button (floating) ──────────────────────────────────────────────
 	local BtnGui = Instance.new("ScreenGui", CoreGui)
-	BtnGui.Name = "NoirToggle"
+	BtnGui.Name = "OrionToggle"
 	BtnGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	BtnGui.ResetOnSpawn = false
 
@@ -873,7 +873,7 @@ function Noir:Window(GuiConfig)
 
 	function GuiFunc:DestroyGui()
 		Screen:Destroy()
-		if CoreGui:FindFirstChild("NoirToggle") then CoreGui.NoirToggle:Destroy() end
+		if CoreGui:FindFirstChild("OrionToggle") then CoreGui.OrionToggle:Destroy() end
 	end
 
 	local Tabs = {}
@@ -1522,19 +1522,13 @@ function Noir:Window(GuiConfig)
 				fr.ClipsDescendants = true
 				corner(fr, 7)
 
-				-- left accent sliver
 				local sliver = Instance.new("Frame", fr)
-				sliver.Size = UDim2.new(0,2,0.6,0)
-				sliver.Position = UDim2.new(0,0,0.2,0)
+				sliver.Size = UDim2.new(0,2,0,20)
+				sliver.Position = UDim2.new(0,0,0,8)
 				sliver.BackgroundColor3 = Accent
 				sliver.BackgroundTransparency = 0.5
 				sliver.BorderSizePixel = 0
 				corner(sliver, 2)
-
-				local fp = pad(fr,14,10,8,8)
-				local fl = list(fr, 3)
-				fl.FillDirection = Enum.FillDirection.Vertical
-				fl.HorizontalAlignment = Enum.HorizontalAlignment.Left
 
 				local tLbl = Instance.new("TextLabel", fr)
 				tLbl.Font = Enum.Font.GothamBold
@@ -1545,8 +1539,8 @@ function Noir:Window(GuiConfig)
 				tLbl.TextWrapped = true
 				tLbl.RichText = true
 				tLbl.BackgroundTransparency = 1
-				tLbl.Size = UDim2.new(1,0,0,14)
-				tLbl.LayoutOrder = 1
+				tLbl.Position = UDim2.new(0,12,0,8)
+				tLbl.Size = UDim2.new(1,-20,0,14)
 				tLbl.Visible = cfg.Title~=""
 
 				local cLbl = Instance.new("TextLabel", fr)
@@ -1558,19 +1552,27 @@ function Noir:Window(GuiConfig)
 				cLbl.TextWrapped = true
 				cLbl.RichText = true
 				cLbl.BackgroundTransparency = 1
-				cLbl.Size = UDim2.new(1,0,0,0)
+				cLbl.Size = UDim2.new(1,-20,0,0)
 				cLbl.AutomaticSize = Enum.AutomaticSize.Y
-				cLbl.LayoutOrder = 2
 				cLbl.Visible = cfg.Content~=""
 
 				local function recalc()
 					task.defer(function()
-						local h = fl.AbsoluteContentSize.Y+16
-						tw(fr, T_SMOOTH, { Size=UDim2.new(1,0,0,math.max(h,34)) })
+						local topY = 8
+						if cfg.Title~="" then
+							tLbl.Position = UDim2.new(0,12,0,topY)
+							topY = topY + 16
+						end
+						cLbl.Position = UDim2.new(0,12,0,topY)
+						local cH = cfg.Content~="" and cLbl.TextBounds.Y or 0
+						local total = topY + (cfg.Content~="" and cH or 0) + 8
+						local sliverH = total - 16
+						sliver.Size = UDim2.new(0,2,0,math.max(sliverH,10))
+						tw(fr, T_SMOOTH, { Size=UDim2.new(1,0,0,math.max(total,34)) })
 					end)
 				end
 				recalc()
-				fl:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(recalc)
+				cLbl:GetPropertyChangedSignal("TextBounds"):Connect(recalc)
 
 				local F = {}
 				function F:SetTitle(v)
@@ -1684,4 +1686,4 @@ function Noir:Window(GuiConfig)
 	return GuiFunc, Tabs
 end
 
-return Noir
+return Orion
