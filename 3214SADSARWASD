@@ -4,7 +4,7 @@ local TweenService     = game:GetService("TweenService")
 local CoreGui          = game:GetService("CoreGui")
 local LocalPlayer      = game:GetService("Players").LocalPlayer
 
-if not isfolder("Orion") then makefolder("Orion") end
+if not isfolder("Noir") then makefolder("Noir") end
 
 local gameFolder, AutoloadFile
 ConfigData        = {}
@@ -200,9 +200,9 @@ local function Notify(msg, dur, col)
 	dur = dur or 3
 	col = col or Color3.fromRGB(140, 140, 150)
 	task.spawn(function()
-		if not CoreGui:FindFirstChild("OrionNotify") then
+		if not CoreGui:FindFirstChild("NoirNotify") then
 			local g = Instance.new("ScreenGui")
-			g.Name = "OrionNotify"
+			g.Name = "NoirNotify"
 			g.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 			g.Parent = CoreGui
 			local h = Instance.new("Frame", g)
@@ -215,7 +215,7 @@ local function Notify(msg, dur, col)
 			l.VerticalAlignment = Enum.VerticalAlignment.Bottom
 		end
 
-		local H = CoreGui.OrionNotify.Holder
+		local H = CoreGui.NoirNotify.Holder
 		local nf = Instance.new("Frame", H)
 		nf.Size = UDim2.new(1,0,0,52)
 		nf.BackgroundColor3 = C.notif
@@ -233,7 +233,7 @@ local function Notify(msg, dur, col)
 
 		local lbl1 = Instance.new("TextLabel", nf)
 		lbl1.Font = Enum.Font.GothamBold
-		lbl1.Text = "ORION"
+		lbl1.Text = "Noir"
 		lbl1.TextSize = 9
 		lbl1.TextColor3 = col
 		lbl1.TextXAlignment = Enum.TextXAlignment.Left
@@ -273,16 +273,16 @@ local function Notify(msg, dur, col)
 end
 
 -- ═════════════════════════════════════════════════════════════════════════════
-local Orion = {}
+local Noir = {}
 
-function Orion:MakeNotify(cfg)
+function Noir:MakeNotify(cfg)
 	cfg = cfg or {}
 	Notify(cfg.Content or cfg.Description or "", cfg.Delay or 3, cfg.Color)
 end
 
-function Orion:Window(GuiConfig)
+function Noir:Window(GuiConfig)
 	GuiConfig = GuiConfig or {}
-	local Title   = GuiConfig.Title       or "Orion"
+	local Title   = GuiConfig.Title       or "Noir"
 	local Footer  = GuiConfig.Footer      or ""
 	local Accent  = GuiConfig.Color       or Color3.fromRGB(255, 255, 255)
 	local TabW    = GuiConfig["Tab Width"] or 145
@@ -290,7 +290,7 @@ function Orion:Window(GuiConfig)
 	local mobile  = isMobile()
 
 	local folderName = GuiConfig.Folder or Title:gsub("[^%w_ ]",""):gsub("%s+","_")
-	gameFolder   = "Orion/"..folderName
+	gameFolder   = "Noir/"..folderName
 	AutoloadFile = gameFolder.."/autoload.txt"
 	if not isfolder(gameFolder) then makefolder(gameFolder) end
 	CURRENT_VERSION = Version
@@ -300,15 +300,15 @@ function Orion:Window(GuiConfig)
 	end
 
 	-- destroy old
-	if CoreGui:FindFirstChild("OrionUI")     then CoreGui.OrionUI:Destroy()     end
-	if CoreGui:FindFirstChild("OrionToggle") then CoreGui.OrionToggle:Destroy() end
+	if CoreGui:FindFirstChild("NoirUI")     then CoreGui.NoirUI:Destroy()     end
+	if CoreGui:FindFirstChild("NoirToggle") then CoreGui.NoirToggle:Destroy() end
 
 	local DW = mobile and 450 or 570
 	local DH = mobile and 300 or 390
 
 	-- ── ScreenGui ─────────────────────────────────────────────────────────────
 	local Screen = Instance.new("ScreenGui")
-	Screen.Name = "OrionUI"
+	Screen.Name = "NoirUI"
 	Screen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	Screen.ResetOnSpawn = false
 	Screen.Parent = CoreGui
@@ -524,7 +524,7 @@ function Orion:Window(GuiConfig)
 		tw(Main, T_SMOOTH, { Size = UDim2.new(0,0,0,0), BackgroundTransparency=1 })
 		task.delay(0.25, function()
 			Screen:Destroy()
-			if CoreGui:FindFirstChild("OrionToggle") then CoreGui.OrionToggle:Destroy() end
+			if CoreGui:FindFirstChild("NoirToggle") then CoreGui.NoirToggle:Destroy() end
 		end)
 	end)
 
@@ -803,7 +803,7 @@ function Orion:Window(GuiConfig)
 
 	-- ── Toggle button (floating) ──────────────────────────────────────────────
 	local BtnGui = Instance.new("ScreenGui", CoreGui)
-	BtnGui.Name = "OrionToggle"
+	BtnGui.Name = "NoirToggle"
 	BtnGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	BtnGui.ResetOnSpawn = false
 
@@ -873,7 +873,7 @@ function Orion:Window(GuiConfig)
 
 	function GuiFunc:DestroyGui()
 		Screen:Destroy()
-		if CoreGui:FindFirstChild("OrionToggle") then CoreGui.OrionToggle:Destroy() end
+		if CoreGui:FindFirstChild("NoirToggle") then CoreGui.NoirToggle:Destroy() end
 	end
 
 	local Tabs = {}
@@ -1543,6 +1543,7 @@ function Orion:Window(GuiConfig)
 				tLbl.TextColor3 = C.text
 				tLbl.TextXAlignment = Enum.TextXAlignment.Left
 				tLbl.TextWrapped = true
+				tLbl.RichText = true
 				tLbl.BackgroundTransparency = 1
 				tLbl.Size = UDim2.new(1,0,0,14)
 				tLbl.LayoutOrder = 1
@@ -1555,6 +1556,7 @@ function Orion:Window(GuiConfig)
 				cLbl.TextColor3 = C.textSub
 				cLbl.TextXAlignment = Enum.TextXAlignment.Left
 				cLbl.TextWrapped = true
+				cLbl.RichText = true
 				cLbl.BackgroundTransparency = 1
 				cLbl.Size = UDim2.new(1,0,0,0)
 				cLbl.AutomaticSize = Enum.AutomaticSize.Y
@@ -1682,4 +1684,4 @@ function Orion:Window(GuiConfig)
 	return GuiFunc, Tabs
 end
 
-return Orion
+return Noir
